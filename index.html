@@ -168,7 +168,8 @@
           audio.play();
           new TimelineMax()
           .to($(this).find('.imagen'), 1, {autoAlpha: 1})
-          .to($(this).find('.imagen'), 10, {autoAlpha: hide_t}, 4)
+          .to($(this).find('.imagen'), 1, {scale: 1.5, ease: Bounce.easeOut})
+          .to($(this).find('.imagen'), 10, {autoAlpha: hide_t, scale: 1}, 4)
           $(this).attr("show", true);
         }
       });
