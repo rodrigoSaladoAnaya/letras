@@ -155,7 +155,7 @@
       const hide_t = 0.07;
       TweenLite.set("img", {autoAlpha: hide_t});
 
-      $(".icon").click(function() {
+      $(".icon").on('click touchstart', function() {
         const audio_id = $(this).attr("taudio");
         const audio = document.getElementById(audio_id);
         const show = !!$(this).attr("show");
