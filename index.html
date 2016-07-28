@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/TweenMax.min.js"></script>
+  <style>
+    body  {
+      font-family: "Arial Rounded MT Bold", "Helvetica Rounded", Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+
+    }
+    .content {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      width: 70%;
+      height: 100vh;
+    }
+    .icon {
+      width: 200px;
+      height: 200px;
+      border: 1px solid #fff;
+      border-radius: 100%;
+      position: relative;
+      cursor: pointer;
+    }
+    .imagen, .letter {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 200px;
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 100px;
+      border-radius: 100%;
+    }
+    audio {
+      display: none;
+    }
+    .imagen {
+      visibility: hidden;
+    }
+
+    .pocoyo {
+      background: #499FD2;
+      color: 	#fff400;
+    }
+
+    .walle {
+      background: #F7BF46;
+      color: #fff;
+    }
+
+    .eva {
+      background: #0072C3;
+      color: #F9F9FB;
+    }
+
+    .pato {
+      background: #FE6428;
+      color: #197F3E;
+    }
+
+    .woody {
+      background: #AA5129;
+      color: #FFD454;
+    }
+
+    .eli {
+      background: #FE84B7;
+      color: #FEFEFE;
+    }
+    .amigazazo {
+      background: #C1DA58;
+      color: #216F93;
+    }
+    .abuelita {
+      background: #d70000;
+      color: #F9C3DD;
+    }
+  </style>
+</head>
+<body>
+  <div class="content">
+    <div class="icon pocoyo" taudio="p-pocoyo">
+      <div class="letter">P</div>
+      <img class="imagen" src="img/pocoyo.png">
+    </div>
+
+    <div class="icon walle" taudio="w-walle">
+      <div class="letter">W</div>
+      <img class="imagen" src="img/walle.png">
+    </div>
+
+    <div class="icon abuelita" taudio="a-abuelita">
+      <div class="letter">A</div>
+      <img class="imagen" src="img/abuelita.png">
+    </div>
+
+    <div class="icon eva" taudio="e-eva">
+      <div class="letter">E</div>
+      <img class="imagen" src="img/eva.png">
+    </div>
+
+    <div class="icon pato" taudio="p-pato">
+      <div class="letter">p</div>
+      <img class="imagen" src="img/pato.png">
+    </div>
+
+    <div class="icon woody" taudio="w-woody">
+      <div class="letter">w</div>
+      <img class="imagen" src="img/woody.png">
+    </div>
+
+    <div class="icon eli" taudio="e-eli">
+      <div class="letter">e</div>
+      <img class="imagen" src="img/eli.png">
+    </div>
+
+    <div class="icon amigazazo" taudio="a-amigazazo">
+      <div class="letter">a</div>
+      <img class="imagen" src="img/amigazazo.png">
+    </div>
+  </div>
+  <audio id="p-pocoyo" class="sonido">
+    <source src="audio/p-pocoyo.m4a">
+  <audio/>
+  <audio id="w-walle" class="sonido">
+    <source src="audio/w-walle.m4a">
+  <audio/>
+  <audio id="e-eva" class="sonido">
+    <source src="audio/e-eva.m4a">
+  <audio/>
+  <audio id="p-pato" class="sonido">
+    <source src="audio/p-pato.m4a">
+  <audio/>
+  <audio id="w-woody" class="sonido">
+    <source src="audio/w-woody.m4a">
+  <audio/>
+  <audio id="e-eli" class="sonido">
+    <source src="audio/e-eli.m4a">
+  <audio/>
+  <audio id="a-amigazazo" class="sonido">
+    <source src="audio/a-amigazazo.m4a">
+  <audio/>
+  <audio id="a-abuelita" class="sonido">
+    <source src="audio/a-abuelita.m4a">
+  <audio/>
+  <script>
+    $(document).ready(function() {
+      const hide_t = 0.07;
+      TweenLite.set("img", {autoAlpha: hide_t});
+
+      $(".icon").click(function() {
+        const audio_id = $(this).attr("taudio");
+        const audio = document.getElementById(audio_id);
+        const show = !!$(this).attr("show");
+        if(show) {
+          new TimelineMax()
+          .to($(this).find('.imagen'), 1, {autoAlpha: hide_t})
+          $(this).removeAttr("show");
+        } else {
+          audio.play();
+          new TimelineMax()
+          .to($(this).find('.imagen'), 1, {autoAlpha: 1})
+          .to($(this).find('.imagen'), 10, {autoAlpha: hide_t}, 4)
+          $(this).attr("show", true);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
