@@ -157,16 +157,14 @@
       $(".icon").on('click touchstart', function() {
         const audio_id = $(this).attr("taudio");
         const audio = document.getElementById(audio_id);
-        const show = !!$(this).attr("show");
-        if(show) {
-          new TimelineMax()
-          .to($(this).find('.imagen'), 1, {opacity: hide_t})
+        const hide = !!$(this).attr("show");
+        if(hide) {
           $(this).removeAttr("show");
         } else {
           audio.play();
           new TimelineMax()
           .to($(this).find('.imagen'), 1, {opacity: 1})
-          .to($(this).find('.imagen'), 1, {scale: 1.5, ease: Bounce.easeOut})
+          .to($(this).find('.imagen'), 1, {scale: 1.2, ease: Bounce.easeOut})
           .to($(this).find('.imagen'), 10, {opacity: hide_t, scale: 1}, 4)
           $(this).attr("show", true);
         }
