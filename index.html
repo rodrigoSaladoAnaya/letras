@@ -42,10 +42,7 @@
     audio {
       display: none;
     }
-    .imagen {
-      visibility: hidden;
-    }
-
+    
     .pocoyo {
       background: #499FD2;
       color: 	#fff400;
@@ -154,22 +151,21 @@
   <script>
     $(document).ready(function() {
       const hide_t = 0.07;
-      TweenLite.set("img", {autoAlpha: hide_t});
-
+      TweenLite.set("img", {opacity: hide_t});
       $(".icon").on('click touchstart', function() {
         const audio_id = $(this).attr("taudio");
         const audio = document.getElementById(audio_id);
         const show = !!$(this).attr("show");
         if(show) {
           new TimelineMax()
-          .to($(this).find('.imagen'), 1, {autoAlpha: hide_t})
+          .to($(this).find('.imagen'), 1, {opacity: hide_t})
           $(this).removeAttr("show");
         } else {
           audio.play();
           new TimelineMax()
-          .to($(this).find('.imagen'), 1, {autoAlpha: 1})
+          .to($(this).find('.imagen'), 1, {opacity: 1})
           .to($(this).find('.imagen'), 1, {scale: 1.5, ease: Bounce.easeOut})
-          .to($(this).find('.imagen'), 10, {autoAlpha: hide_t, scale: 1}, 4)
+          .to($(this).find('.imagen'), 10, {opacity: hide_t, scale: 1}, 4)
           $(this).attr("show", true);
         }
       });
