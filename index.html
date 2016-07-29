@@ -161,14 +161,14 @@
         const audio = document.getElementById(audio_id);
         const hide = !!$(this).attr("show");
         if(!hide) {
+          $(this).attr("show", true);          
           audio.play();
           new TimelineMax()
           .to($(this).find('.imagen'), 1, {opacity: 1})
           .to($(this).find('.imagen'), 1, {scale: 1.2, ease: Bounce.easeOut})
           .to($(this).find('.imagen'), 10, {opacity: hide_t, scale: 1}, 4)
-          $(this).attr("show", true);
         } else {
-          $(this).removeAttr("show");          
+          $(this).removeAttr("show");
         }
       });
     });
