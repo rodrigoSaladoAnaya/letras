@@ -3,6 +3,7 @@
 <head>
   <script src="js/jquery.min.js"></script>
   <script src="js/TweenMax.min.js"></script>
+  <script src="js/screenfull.min.js"></script>
   <style>
     body  {
       font-family: "Arial Rounded MT Bold", "Helvetica Rounded", Arial, sans-serif;
@@ -84,9 +85,19 @@
       background: #d70000;
       color: #F9C3DD;
     }
+    #fullsc {
+      position: absolute;
+      bottom: 20px;
+      right: 10px;
+      width: 70px;
+      height: 70px;
+      background: #b5aad1;
+      border-radius: 100%;
+    }
   </style>
 </head>
 <body>
+  <button id="fullsc">Go to fullscreen</button>
   <div class="content">
     <div class="icon pocoyo" taudio="p-pocoyo">
       <div class="letter">P</div>
@@ -154,6 +165,12 @@
   <audio/>
   <script>
     $(document).ready(function() {
+      $("#fullsc").click(function() {
+        if (screenfull.enabled) {
+          screenfull.request(document.documentElement);
+        }
+      })
+
       const hide_t = 0.07;
 
       $(".icon").on('click touchstart', function() {
@@ -161,7 +178,7 @@
         const audio = document.getElementById(audio_id);
         const hide = !!$(this).attr("show");
         if(!hide) {
-          $(this).attr("show", true);          
+          $(this).attr("show", true);
           audio.play();
           new TimelineMax()
           .to($(this).find('.imagen'), 1, {opacity: 1})
